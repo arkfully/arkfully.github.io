@@ -611,8 +611,11 @@ h3 {
 
 .gallery-pswp {
   display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  grid-auto-rows: 248px;
+  gap: 14px;
+  margin-top: 26px;
 }
 
 .gallery-tile {
@@ -620,6 +623,20 @@ h3 {
   color: inherit;
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(110, 84, 59, 0.12);
+  background: rgba(251, 247, 241, 0.96);
+  box-shadow: 0 24px 44px rgba(43, 34, 27, 0.08);
+  isolation: isolate;
+}
+
+.gallery-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 12, 12, 0) 34%, rgba(12, 12, 12, 0.5) 100%);
+  opacity: 0.84;
+  transition: opacity 220ms ease;
 }
 
 .gallery-tile-wide {
@@ -627,14 +644,15 @@ h3 {
 }
 
 .gallery-tile img {
+  display: block;
   width: 100%;
-  height: 248px;
+  height: 100%;
   object-fit: cover;
+  transition: transform 420ms ease, filter 420ms ease;
 }
 
 .gallery-tile-wide img {
-  height: 100%;
-  min-height: 506px;
+  min-height: calc(100% + 14px);
 }
 
 .gallery-caption {
@@ -644,20 +662,34 @@ h3 {
   bottom: 0;
   display: flex;
   align-items: flex-end;
-  min-height: 36%;
-  padding: 24px 18px 16px;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  letter-spacing: -0.01em;
+  z-index: 1;
+  min-height: 34%;
+  padding: 22px 18px 17px;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  text-transform: uppercase;
   color: rgba(255, 253, 249, 0.92);
-  background: linear-gradient(180deg, rgba(18, 18, 18, 0), rgba(18, 18, 18, 0.62));
-  opacity: 0;
-  transition: opacity 180ms ease;
+  opacity: 0.9;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.gallery-tile:hover img,
+.gallery-tile:focus-visible img {
+  transform: scale(1.035);
+  filter: saturate(1.03);
+}
+
+.gallery-tile:hover::after,
+.gallery-tile:focus-visible::after {
+  opacity: 1;
 }
 
 .gallery-tile:hover .gallery-caption,
 .gallery-tile:focus-visible .gallery-caption {
   opacity: 1;
+  transform: translateY(-2px);
 }
 
 .gallery-card {
@@ -764,6 +796,7 @@ h3 {
 
   .gallery-pswp {
     grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 220px;
   }
 
   .gallery-tile-wide {
@@ -772,7 +805,7 @@ h3 {
   }
 
   .gallery-tile-wide img {
-    min-height: 360px;
+    min-height: 0;
   }
 }
 
@@ -809,7 +842,8 @@ h3 {
 
   .gallery-pswp {
     grid-template-columns: 1fr;
-    gap: 8px;
+    grid-auto-rows: auto;
+    gap: 10px;
   }
 
   .gallery-tile img,
@@ -819,8 +853,9 @@ h3 {
 
   .gallery-caption {
     opacity: 1;
-    padding: 20px 14px 12px;
+    padding: 18px 14px 12px;
     font-size: 0.78rem;
+    letter-spacing: 0.14em;
   }
 
   .gallery-tile-wide {
