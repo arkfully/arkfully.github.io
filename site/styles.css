@@ -576,6 +576,27 @@ h3 {
   object-position: center center;
 }
 
+.stay-editorial-grid {
+  align-items: stretch;
+}
+
+.stay-page-hero-grid,
+.stay-editorial-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stay-story-image {
+  min-height: 0;
+  height: auto;
+}
+
+.stay-story-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .editorial-card-copy {
   padding: 34px;
   display: flex;
@@ -692,6 +713,31 @@ h3 {
   min-height: 506px;
 }
 
+.stay-gallery-grid .gallery-tile,
+.stay-gallery-grid .gallery-tile-wide {
+  background: rgba(244, 237, 227, 0.96);
+}
+
+.stay-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  aspect-ratio: 3 / 2;
+}
+
+.stay-gallery-grid .gallery-tile-wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.stay-gallery-grid .gallery-tile img,
+.stay-gallery-grid .gallery-tile-wide img {
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
 .gallery-caption {
   position: absolute;
   left: 0;
@@ -789,6 +835,16 @@ h3 {
   background: rgba(255, 251, 246, 0.9);
 }
 
+.stay-hero-frame {
+  min-height: 0;
+  height: auto;
+}
+
+.stay-hero-frame img {
+  height: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 1080px) {
   .hero-grid,
   .split-intro,
@@ -830,6 +886,7 @@ h3 {
   .gallery-tile-wide img {
     min-height: 360px;
   }
+
 }
 
 @media (max-width: 760px) {
@@ -883,6 +940,28 @@ h3 {
     grid-column: auto;
   }
 
+  .stay-gallery-grid .gallery-tile-wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stay-gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    aspect-ratio: auto;
+    gap: 8px;
+  }
+
+  .stay-gallery-grid .gallery-tile,
+  .stay-gallery-grid .gallery-tile-wide {
+    aspect-ratio: 3 / 2;
+  }
+
+  .stay-gallery-grid .gallery-tile img,
+  .stay-gallery-grid .gallery-tile-wide img {
+    height: 100%;
+  }
+
   .gallery-card img,
   .gallery-card-large img,
   .editorial-card-image,
@@ -905,6 +984,16 @@ h3 {
   .hero-metrics article {
     padding: 20px;
   }
+
+  .stay-hero-frame {
+    height: auto;
+  }
+
+  .editorial-card-image.stay-story-image {
+    height: 320px;
+    min-height: 0;
+  }
+
 }
 
 .home-hero {
@@ -1148,7 +1237,8 @@ h3 {
 }
 
 .home-experience-media {
-  min-height: 240px;
+  height: 240px;
+  overflow: hidden;
 }
 
 .home-experience-media img {
@@ -1396,7 +1486,7 @@ h3 {
   }
 
   .home-experience-media {
-    min-height: 208px;
+    height: 208px;
   }
 
   .home-hero-note {
